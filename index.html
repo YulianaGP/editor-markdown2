@@ -8,12 +8,17 @@
   <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body>
 
   <!-- Header / Barra de herramientas -->
-  <header class="fixed w-full bg-white shadow-md z-10 p-4 flex justify-between items-center flex-col md:flex-row gap-4">
+  <header class="fixed w-full shadow-md z-10 p-4 flex justify-between items-center flex-col md:flex-row gap-4">
     <h1 class="text-xl font-bold">Editor Markdown</h1>
     <div class="flex gap-4">
+      <label for="toggle-tema" class="text-sm font-medium">🌙 Tema oscuro</label>
+      <input type="checkbox" id="toggle-tema" class="toggle-tema hidden" />
+      <label for="toggle-tema" class="cursor-pointer w-12 h-6 flex items-center bg-gray-300 rounded-full p-1 transition duration-300 ease-in-out">
+        <div class="w-4 h-4 bg-white rounded-full shadow-md transform transition duration-300 ease-in-out"></div>
+      </label>
       <button id="previewBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
         Generar Vista Previa
       </button>
@@ -28,7 +33,7 @@
 
 
     <!-- Editor -->
-    <section class="bg-white rounded-lg shadow p-4 h-[70vh] flex flex-col">
+    <section class="rounded-lg shadow p-4 h-[70vh] flex flex-col">
       <h2 class="text-lg font-semibold mb-2">Editor Markdown</h2>
 
       <!-- Botones de formato -->
@@ -45,6 +50,12 @@
         >
           Cursiva
         </button>
+        <button
+          id="btnLimpiar"
+          class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+        >
+          Limpiar
+        </button>
       </div>
 
       <!-- Área de texto -->
@@ -55,14 +66,14 @@
       ></textarea>
 
       <!-- Contador -->
-      <p id="contador" class="text-sm text-gray-500 mt-2">
+      <p id="contador" class="text-sm mt-2">
         0 palabras | 0 caracteres
       </p>
     </section>
 
 
     <!-- Preview -->
-    <section class="bg-white rounded-lg shadow p-4 h-[70vh] overflow-auto">
+    <section class="rounded-lg shadow p-4 h-[70vh] overflow-auto">
       <h2 class="text-lg font-semibold mb-2">Vista Previa</h2>
       <div id="previewOutput"></div>
     </section>
@@ -70,7 +81,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="text-center py-4 text-sm text-gray-500">
+  <footer class="text-center py-4 text-sm">
     Proyecto Final del Módulo 3
   </footer>
 

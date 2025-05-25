@@ -9,6 +9,11 @@ textarea::placeholder {
   color: #9ca3af; /* Tailwind gray-400 */
 }
 
+#toggle-tema:checked + label > div {
+    transform: translateX(1.5rem);
+    background-color: #1a202c; /* gray-900 */
+  }
+
 #previewOutput ol {
   list-style-type: decimal;
   padding-left: 2rem;
