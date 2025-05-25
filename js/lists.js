@@ -1,4 +1,4 @@
-// HU2: Generación de listas numéricas dinámicamente
+// HU10: Generación de listas numéricas dinámicamente
 
 // Función para detectar y transformar listas numéricas Markdown en listas <ol>
 export function transformarListasNumericas(markdown) {

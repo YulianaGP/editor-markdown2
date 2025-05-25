@@ -1,4 +1,4 @@
-// HU1: Botón para alternar el formato de texto (Negrita o Cursiva)
+// HU2: Formateo Rápido de Texto - Aplicar negrita/cursiva al texto seleccionado
 
 // Función de orden superior
 export function aplicarFormato(callback) {

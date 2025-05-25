@@ -1,4 +1,4 @@
-// HU3: Resaltado Dinámico de Código
+// HU9: Resaltado Dinámico de Código
 
 export function transformarBloquesCodigo(markdown) {
   return markdown.replace(/```([\s\S]*?)```/g, (match, codigo) => {
