@@ -144,8 +144,6 @@ toggle.addEventListener("change", () => {
   }
 });
 
-
-
 // Paso 7: Botón de Negrita 
 document.getElementById("btnNegrita").addEventListener("click", () => {
   aplicarFormato(formatoNegrita);
@@ -163,15 +161,36 @@ document.getElementById('btnLimpiar').addEventListener('click', () => {
   contador.textContent = '0 palabras | 0 caracteres';
 });
 
-
-// Paso 10: Botón para generar vista previa
+// Paso 10: Botón para generar vista previa con manejo de errores
 previewBtn.addEventListener('click', () => {
-  const markdownTexto = textarea.value;
+  const markdownTexto = textarea.value.trim();
 
-  const conListas = transformarListasNumericas(markdownTexto);
-  const conBloques = transformarBloquesCodigo(conListas);
+  try {
+    // Validación: campo vacío
+    if (markdownTexto === '') {
+      throw new Error("⚠️ El campo de texto está vacío. Escribe algo en Markdown para previsualizar.");
+    }
 
-  previewOutput.innerHTML = marked.parse(conBloques);
+    // Validación opcional de estructura mínima (ejemplo básico)
+    const encabezadoValido = /^#{1,6} .+/m.test(markdownTexto);
+    const listaValida = /^(\*|\-|\+) .+/m.test(markdownTexto);
+    const codigoValido = /```[\s\S]*?```/.test(markdownTexto);
+
+    if (!encabezadoValido && !listaValida && !codigoValido) {
+      throw new Error("⚠️ El texto no contiene elementos Markdown reconocibles como encabezados, listas o bloques de código.");
+    }
+
+    // Transformaciones
+    const conListas = transformarListasNumericas(markdownTexto);
+    const conBloques = transformarBloquesCodigo(conListas);
+
+    // Vista previa
+    previewOutput.innerHTML = marked.parse(conBloques);
+
+  } catch (error) {
+    // Mostramos el mensaje de error directamente en el contenedor de preview
+    previewOutput.innerHTML = `<p class="text-red-600 font-semibold">${error.message}</p>`;
+  }
 });
 
 // Paso 11: Toggle para aplicar contraste visual para encabezados
@@ -207,13 +226,21 @@ textarea.addEventListener('input', () => {
   const caracteres = texto.replace(/\s/g, '').length;
   contador.textContent = `${palabras} ${palabras === 1 ? 'palabra' : 'palabras'} | ${caracteres} caracteres`;
 
-  // 👁️ Vista previa automática
-  const markdownTexto = textarea.value;
-  const conListas = transformarListasNumericas(markdownTexto);
-  const conBloques = transformarBloquesCodigo(conListas);
-  previewOutput.innerHTML = marked.parse(conBloques);
-});
+  // 👁️ Vista previa automática con validación y manejo de errores
+  try {
+    if (texto === "") {
+      throw new Error("⚠️ No se ingresó contenido.");
+    }
 
+    const conListas = transformarListasNumericas(texto);
+    const conBloques = transformarBloquesCodigo(conListas);
+    previewOutput.innerHTML = marked.parse(conBloques);
+
+  } catch (error) {
+    previewOutput.innerHTML = `<p class="text-red-600 font-semibold">${error.message}</p>`;
+    console.error(error);
+  }
+});
 
 // Paso 13: 🧠 Atajos de teclado: Ctrl+B (negrita), Ctrl+I (cursiva) y limpiar
 document.addEventListener("keydown", (e) => {
