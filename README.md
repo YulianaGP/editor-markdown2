@@ -1,70 +1,101 @@
-# 📝 Editor Markdown en Vivo (Versión Avanzada)
+# Markdown versión final
 
-Este proyecto es un Editor Markdown en Vivo que permite al usuario escribir texto con sintaxis Markdown, generar una vista previa en HTML y aplicar estilos dinámicos. Soporta negrita, cursiva, encabezados, listas numeradas, bloques de código resaltado y atajos de teclado para formato rápido.
+## 🧠 Paradigmas Utilizados
 
----
+- **Imperativo:**  
+  Se usa en la manipulación directa del DOM y estructuras de control (`forEach`, `if`, `addEventListener`).
 
-## 🧠 Paradigma de Programación
+- **Funcional:**  
+  Aplicación clara de funciones como callbacks (`aplicarFormato(formatoNegrita)`), uso de funciones puras importadas (`formatoNegrita`, `formatoCursiva`).
 
-Este proyecto combina múltiples enfoques de programación en JavaScript:
+- **Orientado a Objetos (DOM API):**  
+  Acceso y manipulación del DOM a través de métodos y propiedades (`classList`, `querySelectorAll`, `innerHTML`, `value`), lo cual simula el uso de objetos reales.
 
-### ✅ Programación Imperativa
-Manipula el DOM directamente para capturar eventos y actualizar la vista:
-
-- `getElementById()`, `addEventListener()`, `innerHTML`, etc.
-- Lógica centrada en cómo se hacen las cosas paso a paso.
-
-### ✅ Programación Funcional
-Uso de funciones puras y reutilizables para transformar texto:
-
-- **Funciones de orden superior** como `aplicarFormato(callback)`.
-- **Callbacks** para aplicar formato (`formatoNegrita`, `formatoCursiva`).
-- **Transformadores puros**: `transformarListasNumericas()`, `transformarBloquesCodigo()`.
-
-### ✅ Eventos de Teclado (Interacción avanzada)
-Escucha eventos globales como `keydown` para permitir atajos de teclado (Ctrl+B, Ctrl+I), mejorando la experiencia del usuario.
-
-### ✅ Uso de Librerías
-Se usa `marked` como motor de conversión Markdown → HTML, lo cual simplifica y estandariza el renderizado.
+- **Manejo de Excepciones:**  
+  Bien implementado con `try/catch` y `throw new Error()` para validar entradas vacías y estructuras Markdown.
 
 ---
 
-## ✅ Historias de Usuario
+## ✅ Desempeño por Laboratorio
 
-- ✅ **HU1**: Como usuario, quiero escribir texto Markdown en un textarea, para generar contenido estructurado.
-- ✅ **HU2**: Como usuario, quiero ver una vista previa de mi Markdown convertido a HTML con un solo clic.
-- ✅ **HU3**: Como usuario, quiero aplicar un estilo de contraste a los encabezados de la vista previa, para distinguir mejor los títulos.
-- ✅ **HU4**: Como usuario, quiero ver un contador de palabras y caracteres mientras escribo, para llevar control de mi contenido.
-- ✅ **HU5**: Como usuario, quiero una interfaz clara, responsiva y amigable, para poder trabajar desde distintos dispositivos.
-- ✅ **HU6**: Como usuario, quiero poder aplicar negrita y cursiva con botones visuales, para dar formato rápidamente al texto.
-- ✅ **HU7**: Como usuario, quiero que se transformen correctamente las listas numeradas escritas como "1) ítem", para que se vean bien en HTML.
-- ✅ **HU8**: Como usuario, quiero que los bloques de código entre triple backticks (```) se muestren con formato especial, para facilitar la lectura del código.
-- ✅ **HU9** *(Logro adicional)*: Como usuario, quiero aplicar negrita (Ctrl+B) o cursiva (Ctrl+I) usando atajos de teclado, para trabajar más eficientemente.
+### 🔹 Lab 09: DOM como API de Objetos
 
----
+- ✔️ Selección clara y precisa de elementos DOM.  
+- ✔️ Manipulación masiva y semántica de clases CSS.  
+- ✔️ Aplicación de estilos oscuros y claros con efectos visuales bien diseñados (gradientes, blur, sombras).  
 
-## 🔁 Comparación: Primer Editor vs Versión Avanzada
+### 🔹 Lab 10: Funciones y Callbacks
 
-| Característica                         | Primer Editor                    | Versión Avanzada                     |
-|---------------------------------------|----------------------------------|--------------------------------------|
-| Paradigma principal                   | Imperativo + DOM                 | Imperativo + Funcional + Eventos     |
-| Librería `marked`                     | ✅                               | ✅                                    |
-| Aplicación de formato (negrita/cursiva) | ❌ Solo por sintaxis manual       | ✅ Por botón y por atajo de teclado  |
-| Transformación de listas (`1)`)       | ❌                               | ✅                                    |
-| Transformación de bloques de código   | ❌                               | ✅ Triple backtick → `<pre><code>`   |
-| Atajos de teclado (Ctrl+B, Ctrl+I)    | ❌                               | ✅                                    |
-| Modularización del código             | ❌ (código en un solo archivo)    | ✅ (`app.js`, `format.js`, etc.)     |
+- ✔️ Separación de responsabilidades con módulos (`format.js`, `lists.js`, `blocks.js`).  
+- ✔️ Uso de funciones como argumentos (`aplicarFormato(formatoNegrita)`).  
+- ✔️ Diseño escalable, ideal para añadir más formatos sin duplicar lógica.  
 
----
+### 🔹 Lab 11: Manejo de Eventos
 
-## 📌 Conclusión
+- ✔️ Uso correcto de `addEventListener` para botones con lógica separada.  
+- ✔️ Implementación de un toggle con persistencia de tema (`localStorage`), muy bien logrado.  
+- ✔️ Limpieza del contenido bien estructurada y actualiza la vista previa + contador.  
 
-Este proyecto representa un paso importante en la evolución del desarrollo web:
+### 🔹 Lab 12: Manejo de Excepciones
 
-- Transición de una app puramente imperativa a una combinación rica con programación funcional.
-- Mejora de la experiencia del usuario con transformaciones inteligentes y atajos de teclado.
-- Aplicación de principios como separación de responsabilidades, modularización y eventos avanzados.
+- ✔️ Uso de `try/catch` y `throw` personalizado para validar contenido vacío.  
+- ✔️ Preparación para validaciones más complejas usando expresiones regulares (`RegEx`).  
 
 ---
 
-🎯 Desarrollado como parte del **Módulo 3: Funciones y Callbacks en JavaScript**.
+## ✅ Resumen de Historias de Usuario Implementadas
+
+✅ **HU1: Cambio de Tema Visual**  
+Alternar entre tema claro y oscuro para una mejor experiencia de usuario.
+
+✅ **HU2: Formateo Rápido de Texto**  
+Aplicar formato de negrita y cursiva al texto seleccionado de forma inmediata.
+
+✅ **HU3: Limpieza Rápida del Editor**  
+Permitir al usuario borrar rápidamente todo el contenido del editor.
+
+✅ **HU4: Vista Previa Validada**  
+Generar una vista previa en HTML a partir del texto Markdown, validando errores de entrada.
+
+✅ **HU5: Mejora Visual de Encabezados**  
+Aplicar estilos visuales diferenciados a los encabezados para mayor legibilidad.
+
+✅ **HU6: Feedback en Tiempo Real**  
+Contador de palabras y generación automática de la vista previa mientras se escribe.
+
+✅ **HU7: Productividad con Atajos**  
+Implementación de atajos de teclado para funciones clave como formato o limpieza.
+
+✅ **HU8: Persistencia de Sesión**  
+Guardar y recuperar automáticamente el contenido del editor con localStorage.
+
+✅ **HU9: Resaltado Dinámico de Código**  
+Mejorar la legibilidad del código con estilos destacados en bloques de código.
+
+✅ **HU10: Generación de Listas Numéricas Dinámicamente**  
+Permitir al usuario crear listas ordenadas de forma automática desde el editor.
+
+---
+
+## ✅ Conclusión
+
+A lo largo de los Laboratorios 9 al 12, el proyecto evolucionó desde una simple interfaz hasta convertirse en un **Editor Avanzado de Markdown en Vivo**, completamente funcional y robusto. Cada laboratorio aportó una capa de complejidad: desde manipulación básica del DOM, pasando por interactividad avanzada, hasta validación y manejo de errores. Esta evolución progresiva no solo reforzó los principios fundamentales de JavaScript, sino que también demostró cómo un desarrollo incremental permite construir aplicaciones complejas de forma ordenada y mantenible.
+
+---
+## 🏁 Conclusión y Calificación
+
+| **Criterio**                    | **Cumplimiento** |
+|--------------------------------|------------------|
+| DOM Avanzado                   | ✅ Excelente      |
+| Modularización Funcional       | ✅ Excelente      |
+| Callbacks Personalizados       | ✅ Excelente      |
+| Eventos Bien Aplicados         | ✅ Excelente      |
+| Excepciones con Validación     | ✅ Excelente      |
+| Código Claro y Comentado       | ✅ Excelente      |
+| Historia de Usuario Cubierta   | ✅ Todas las visibles |
+| Potencial de Escalabilidad     | ✅ Alto           |
+
+
+---
+
+🎯 Desarrollado como parte del **Módulo 3 (code201)**.
